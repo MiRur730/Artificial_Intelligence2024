@@ -1,0 +1,55 @@
+We are creating environment for the agent and doing the state space represnetation\m
+
+
+goal_list=[];
+my_list=[];
+//0 ffor empty block
+p=puzzle(my_list)goal_list
+
+right ka logic would be
+(self.empty_tile + 1) % 3 != 0: This expression calculates the column index of the empty tile
+ after moving it to the right. If the remainder of dividing
+  the new column index by 3 is not equal to 0,
+   it means the new position is not at the right edge of the grid, so the move is valid.
+
+Performing the Move: If the move is valid, the method calculates the
+ index of the new position of the empty tile after moving it to the right:
+
+new_empty_index = self.empty_tile + 1
+
+Then, it calls the move_empty_tile helper method, passing the index of the new empty tile position. This method returns a new state of the puzzle with the tiles swapped, effectively representing the state after making the move.
+
+Returning the New State: If the move is valid, the
+ method returns the new state of the puzzle after moving
+  the empty tile to the right. If the move is not valid
+   (i.e., the empty tile is already at the right edge of the grid), it returns None to indicate that no move was made.
+
+
+
+   down
+
+   self.empty_tile + 3 < 9: This expression calculates the index of 
+   the cell below the empty tile and checks if it's within the range of valid indices
+    (0 to 8 for a 3x3 grid). If the new index is less than 9, it means the move is valid.
+
+Looping through the Puzzle Cells: The method iterates over a range of integers from 0 to 8 using the range(9) function. This represents all the possible indices in a 3x3 grid (or any similar grid represented by a 1D list).
+
+Checking for the Empty Tile: For each index i in the loop, it checks if the value of the cell at that index in the current_state list is equal to 0, indicating that it's the empty tile.    
+
+
+
+
+
+logic to move the tileCopying the Current State:
+
+new_state = self.current_state[:]: This line creates a copy of the current state of the puzzle (self.current_state) using Python's slicing notation. This ensures that modifications made to new_state do not affect the original self.current_state.
+Swapping Tiles:
+
+new_state[self.empty_tile], new_state[new_empty_index] = new_state[new_empty_index], new_state[self.empty_tile]: This line swaps the positions of the empty tile and the tile to be moved within new_state.
+new_state[self.empty_tile] represents the value of the empty tile in new_state.
+new_state[new_empty_index] represents the value of the tile at the index specified by new_empty_index.
+By swapping these values, the positions of the empty tile and the tile to be moved are effectively exchanged in new_state.
+Returning the Updated State:
+
+return new_state: After performing the swap, the method returns the updated state of the puzzle (new_state) to the caller.
+This updated state reflects the result of moving the empty tile to the position specified by new_empty_index.
